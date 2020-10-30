@@ -28,6 +28,7 @@ extern "C" {
 #include "EOemsControllerCfg.h"
 
 #include "Pid.h"
+#include "minjerk.h"
 #include "Trajectory.h"
 #include "WatchDog.h"
 
