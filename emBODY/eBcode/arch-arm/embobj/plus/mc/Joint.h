@@ -29,7 +29,6 @@ extern "C" {
 
 #include "Pid.h"
 #include "minjerk.h"
-#include "Trajectory.h"
 #include "WatchDog.h"
 
 #include "CalibrationHelperData.h"
@@ -163,8 +162,6 @@ typedef struct // Joint
     
     WatchDog trq_fbk_wdog;
     WatchDog vel_ref_wdog;
-    
-    Trajectory trajectory;
     
     eOmc_controlmode_t     control_mode;
     eOmc_interactionmode_t interaction_mode;
