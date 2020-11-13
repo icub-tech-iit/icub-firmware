@@ -169,6 +169,8 @@ typedef struct // Joint
     
     BOOL pos_control_active;
     BOOL trq_control_active;
+		
+    minjerkModelClass minjerk;
     
     BOOL not_reversible;
     CableConstraintData cable_constr;

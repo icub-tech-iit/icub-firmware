@@ -98,7 +98,7 @@ void Joint_init(Joint* o)
     WatchDog_rearm(&o->trq_fbk_wdog);
     WatchDog_rearm(&o->vel_ref_wdog);
     
-    minjerk_initialize();
+    o->minjerk.initialize();
     
     PID_init(&o->minjerkPID);
     PID_init(&o->directPID);
@@ -186,7 +186,7 @@ void Joint_motion_reset(Joint *o)
     
     // ?? Missing ??
     //Trajectory_stop(&o->trajectory, o->pos_fbk);
-    rtU.pfin = o->pos_fbk; // makes sense?
+    o->minjerk.rtU.pfin = o->pos_fbk; // makes sense?
 
     //Watchdog_disarm(&o->vel_ref_wdog);
     
@@ -213,20 +213,20 @@ void Joint_update_status_reference(Joint* o)
         
         case eomc_controlmode_mixed:
         case eomc_ctrlmval_velocity_pos:
-            o->eo_joint_ptr->status.target.trgt_velocity = rtU.vavg;
-            o->eo_joint_ptr->status.target.trgt_position = rtU.pfin;
+            o->eo_joint_ptr->status.target.trgt_velocity = o->minjerk.rtU.vavg;
+            o->eo_joint_ptr->status.target.trgt_position = o->minjerk.rtU.pfin;
             break;
         case eomc_controlmode_velocity: //
         case eomc_controlmode_vel_direct:
         case eomc_controlmode_impedance_vel:
-            o->eo_joint_ptr->status.target.trgt_velocity = rtU.vavg;
+            o->eo_joint_ptr->status.target.trgt_velocity = o->minjerk.rtU.vavg;
             break;
         case eomc_controlmode_position:
         case eomc_controlmode_impedance_pos:
-            o->eo_joint_ptr->status.target.trgt_position = rtU.pfin;
+            o->eo_joint_ptr->status.target.trgt_position = o->minjerk.rtU.pfin;
             break;
         case eomc_controlmode_direct:
-            o->eo_joint_ptr->status.target.trgt_positionraw = rtU.pfin;
+            o->eo_joint_ptr->status.target.trgt_positionraw = o->minjerk.rtU.pfin;
             break;
                 
         case eomc_controlmode_openloop:
@@ -565,8 +565,8 @@ CTRL_UNITS Joint_do_pwm_or_current_control(Joint* o)
             if (WatchDog_check_expired(&o->vel_ref_wdog))
             {
                 // has sense?
-                rtU.pfin = o->pos_fbk;
-                rtU.vavg = 0;
+                o->minjerk.rtU.pfin = o->pos_fbk;
+                o->minjerk.rtU.vavg = 0;
             }
         }
         case eomc_controlmode_direct:
@@ -580,10 +580,10 @@ CTRL_UNITS Joint_do_pwm_or_current_control(Joint* o)
                 o->output = ZERO;
                 break;
             }
-            minjerk_step();
-            o->pos_ref = rtY.pref;
-            o->vel_ref = rtY.vref;
-            o->acc_ref = rtY.aref;
+            o->minjerk.step();
+            o->pos_ref = o->minjerk.rtY.pref;
+            o->vel_ref = o->minjerk.rtY.vref;
+            o->acc_ref = o->minjerk.rtY.aref;
             
             //static int noflood = 0;
             //if (++noflood > 500)
@@ -748,15 +748,15 @@ CTRL_UNITS Joint_do_vel_control(Joint* o)
             if (WatchDog_check_expired(&o->vel_ref_wdog))
             {
                 // Has sense?
-                rtU.vavg = 0;
+                o->minjerk.rtU.vavg = 0;
             }
         case eomc_controlmode_direct:
         case eomc_controlmode_position:
         {
-            minjerk_step();
-            o->pos_ref = rtY.pref;
-            o->vel_ref = rtY.vref;
-            o->acc_ref = rtY.aref;
+            o->minjerk.step();
+            o->pos_ref = o->minjerk.rtY.pref;
+            o->vel_ref = o->minjerk.rtY.vref;
+            o->acc_ref = o->minjerk.rtY.aref;
         
             o->pos_err = o->pos_ref - o->pos_fbk;
             o->vel_err = o->vel_ref - o->vel_fbk;        
@@ -880,7 +880,7 @@ void Joint_get_state(Joint* o, eOmc_joint_status_t* joint_state)
 {
     joint_state->core.modes.interactionmodestatus    = o->interaction_mode;
     joint_state->core.modes.controlmodestatus        = o->control_mode;
-    joint_state->core.modes.ismotiondone             = rtY.EOT;
+    joint_state->core.modes.ismotiondone             = o->minjerk.rtY.EOT;
     joint_state->core.measures.meas_position         = o->pos_fbk;           
     joint_state->core.measures.meas_velocity         = o->vel_fbk;        
     joint_state->core.measures.meas_acceleration     = o->acc_fbk;      
@@ -929,8 +929,8 @@ static BOOL Joint_set_pos_ref_core(Joint* o, CTRL_UNITS pos_ref, CTRL_UNITS vel_
 
     if (vel_ref == 0.0f) return TRUE;
     
-    rtU.pfin = pos_ref;
-    rtU.vavg = vel_ref;
+    o->minjerk.rtU.pfin = pos_ref;
+    o->minjerk.rtU.vavg = vel_ref;
     return TRUE;  
 }
 
@@ -959,7 +959,7 @@ BOOL Joint_set_pos_raw(Joint* o, CTRL_UNITS pos_ref)
     o->vel_ref = ZERO;
     
     // Has sense? Raw should be diff? vavg has to be set to 0?
-    rtU.pfin = pos_ref;
+    o->minjerk.rtU.pfin = pos_ref;
     
     return TRUE;  
 }
@@ -1005,12 +1005,12 @@ BOOL Joint_set_vel_ref(Joint* o, CTRL_UNITS vel_ref, CTRL_UNITS acc_ref)
     
     if (acc_ref == 0.0f)
     {
-        rtU.vavg = 0;
+        o->minjerk.rtU.vavg = 0;
 
         return TRUE;
     }
      
-    rtU.vavg = vel_ref;
+    o->minjerk.rtU.vavg = vel_ref;
     
     return TRUE;
 }
@@ -1028,7 +1028,7 @@ BOOL Joint_set_vel_raw(Joint* o, CTRL_UNITS vel_ref)
  
     o->vel_ref = vel_ref;
      
-    rtU.vavg = vel_ref;
+    o->minjerk.rtU.vavg = vel_ref;
     
     return TRUE;
 }
@@ -1073,7 +1073,7 @@ BOOL Joint_set_cur_ref(Joint* o, CTRL_UNITS cur_ref)
 
 void Joint_stop(Joint* o)
 {
-    rtU.pfin = o->pos_fbk;
+    o->minjerk.rtU.pfin = o->pos_fbk;
 }
 
 static void Joint_set_inner_control_flags(Joint* o)
