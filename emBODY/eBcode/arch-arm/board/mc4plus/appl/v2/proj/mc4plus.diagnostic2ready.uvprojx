@@ -1022,9 +1022,9 @@
               <FilePath>..\..\..\..\..\embobj\plus\mc\WatchDog.c</FilePath>
             </File>
             <File>
-              <FileName>minjerk.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\embobj\plus\mc\minjerk\helpers\minjerk_ert_rtw\minjerk.c</FilePath>
+              <FileName>minjerk.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\..\..\embobj\plus\mc\minjerk\helpers\minjerk_ert_rtw\minjerk.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2276,9 +2276,9 @@
               <FilePath>..\..\..\..\..\embobj\plus\mc\WatchDog.c</FilePath>
             </File>
             <File>
-              <FileName>minjerk.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\embobj\plus\mc\minjerk\helpers\minjerk_ert_rtw\minjerk.c</FilePath>
+              <FileName>minjerk.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\..\..\embobj\plus\mc\minjerk\helpers\minjerk_ert_rtw\minjerk.cpp</FilePath>
             </File>
           </Files>
         </Group>
