@@ -19,6 +19,7 @@
 #ifndef MC_JOINT_SET___
 #define MC_JOINT_SET___
 
+#include "Joint.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -27,7 +28,7 @@ extern "C" {
 
 #include "EOemsControllerCfg.h"
 
-#include "Joint.h"
+
 #include "Motor.h"
 #include "AbsEncoder.h"
 #include "Pid.h"

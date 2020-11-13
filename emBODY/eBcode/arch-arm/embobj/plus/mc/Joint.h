@@ -18,7 +18,7 @@
 
 #ifndef MC_JOINT___
 #define MC_JOINT___
-
+#include "minjerk.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -28,7 +28,6 @@ extern "C" {
 #include "EOemsControllerCfg.h"
 
 #include "Pid.h"
-#include "minjerk.h"
 #include "WatchDog.h"
 
 #include "CalibrationHelperData.h"

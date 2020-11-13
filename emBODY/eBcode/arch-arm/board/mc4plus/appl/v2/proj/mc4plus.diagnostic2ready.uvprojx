@@ -789,7 +789,7 @@
             </File>
             <File>
               <FileName>overridden_controller.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\cfg\eoemsappl\overridden_controller.c</FilePath>
             </File>
           </Files>
@@ -809,7 +809,7 @@
             </File>
             <File>
               <FileName>EOappEncodersReader.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\board\EOappEncodersReader.c</FilePath>
             </File>
             <File>
@@ -824,7 +824,7 @@
             </File>
             <File>
               <FileName>EOCurrentsWatchdog.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\ems004\appl\v2\src\eoappservices\EOCurrentsWatchdog.c</FilePath>
             </File>
             <File>
@@ -844,12 +844,12 @@
             </File>
             <File>
               <FileName>EOtheMotionController.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\ems004\appl\v2\src\eoappservices\EOtheMotionController.c</FilePath>
             </File>
             <File>
               <FileName>EOtheEncoderReader.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\ems004\appl\v2\src\eoappservices\EOtheEncoderReader.c</FilePath>
             </File>
             <File>
@@ -978,7 +978,7 @@
           <Files>
             <File>
               <FileName>Calibrators.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\mc\Calibrators.c</FilePath>
             </File>
             <File>
@@ -988,17 +988,17 @@
             </File>
             <File>
               <FileName>Controller.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\mc\Controller.c</FilePath>
             </File>
             <File>
               <FileName>Joint.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\mc\Joint.c</FilePath>
             </File>
             <File>
               <FileName>JointSet.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\mc\JointSet.c</FilePath>
             </File>
             <File>
@@ -1208,7 +1208,7 @@
             </File>
             <File>
               <FileName>EoProtocolMC_fun_ems4rd.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\ems004\appl\v2\cfg\eoprot-callbacks\EoProtocolMC_fun_ems4rd.c</FilePath>
             </File>
             <File>
@@ -1243,12 +1243,12 @@
           <Files>
             <File>
               <FileName>EoCANprotMCpolling.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\can\config-can-protocol\EoCANprotMCpolling.c</FilePath>
             </File>
             <File>
               <FileName>EoCANprotMCperiodic.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\can\config-can-protocol\EoCANprotMCperiodic.c</FilePath>
             </File>
             <File>
@@ -2112,7 +2112,7 @@
             </File>
             <File>
               <FileName>overridden_controller.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\cfg\eoemsappl\overridden_controller.c</FilePath>
             </File>
           </Files>
@@ -2132,7 +2132,7 @@
             </File>
             <File>
               <FileName>EOappEncodersReader.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\board\EOappEncodersReader.c</FilePath>
             </File>
             <File>
@@ -2147,7 +2147,7 @@
             </File>
             <File>
               <FileName>EOCurrentsWatchdog.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\ems004\appl\v2\src\eoappservices\EOCurrentsWatchdog.c</FilePath>
             </File>
             <File>
@@ -2167,12 +2167,12 @@
             </File>
             <File>
               <FileName>EOtheMotionController.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\ems004\appl\v2\src\eoappservices\EOtheMotionController.c</FilePath>
             </File>
             <File>
               <FileName>EOtheEncoderReader.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\ems004\appl\v2\src\eoappservices\EOtheEncoderReader.c</FilePath>
             </File>
             <File>
@@ -2232,7 +2232,7 @@
           <Files>
             <File>
               <FileName>Calibrators.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\mc\Calibrators.c</FilePath>
             </File>
             <File>
@@ -2242,17 +2242,17 @@
             </File>
             <File>
               <FileName>Controller.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\mc\Controller.c</FilePath>
             </File>
             <File>
               <FileName>Joint.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\mc\Joint.c</FilePath>
             </File>
             <File>
               <FileName>JointSet.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\mc\JointSet.c</FilePath>
             </File>
             <File>
@@ -2462,7 +2462,7 @@
             </File>
             <File>
               <FileName>EoProtocolMC_fun_ems4rd.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\ems004\appl\v2\cfg\eoprot-callbacks\EoProtocolMC_fun_ems4rd.c</FilePath>
             </File>
             <File>
@@ -2497,12 +2497,12 @@
           <Files>
             <File>
               <FileName>EoCANprotMCpolling.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\can\config-can-protocol\EoCANprotMCpolling.c</FilePath>
             </File>
             <File>
               <FileName>EoCANprotMCperiodic.c</FileName>
-              <FileType>1</FileType>
+              <FileType>8</FileType>
               <FilePath>..\..\..\..\..\embobj\plus\can\config-can-protocol\EoCANprotMCperiodic.c</FilePath>
             </File>
             <File>

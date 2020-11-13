@@ -18,7 +18,8 @@
 
 #ifndef MC_CONTROLLER___
 #define MC_CONTROLLER___
-
+#include "Joint.h"
+#include "JointSet.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -27,11 +28,11 @@ extern "C" {
 
 #include "EOemsControllerCfg.h"
 
-#include "Joint.h"
+
 #include "Motor.h"
 #include "AbsEncoder.h"
 #include "Pid.h"
-#include "JointSet.h"
+
 
 typedef struct //MController
 {

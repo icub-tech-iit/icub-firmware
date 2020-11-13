@@ -19,13 +19,13 @@
 #ifndef MC_CALIBRATORS_H___
 #define MC_CALIBRATORS_H___
 
+#include "JointSet.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include "EOemsControllerCfg.h"
 
-#include "JointSet.h"
 
 extern BOOL JointSet_do_wait_calibration_3(JointSet* o);
 extern BOOL JointSet_do_wait_calibration_5(JointSet* o);
