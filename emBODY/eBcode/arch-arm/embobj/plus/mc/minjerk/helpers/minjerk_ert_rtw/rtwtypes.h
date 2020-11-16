@@ -7,12 +7,12 @@
 //
 // Code generated for Simulink model 'minjerk'.
 //
-// Model version                  : 2.12
+// Model version                  : 2.13
 // Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
-// C/C++ source code generated on : Thu Nov 12 15:29:44 2020
+// C/C++ source code generated on : Mon Nov 16 12:11:17 2020
 //
 // Target selection: ert.tlc
-// Embedded hardware selection: Intel->x86-64 (Windows64)
+// Embedded hardware selection: ARM Compatible->ARM Cortex-M
 // Code generation objectives:
 //    1. Execution efficiency
 //    2. RAM efficiency
@@ -35,10 +35,10 @@
 
 //=======================================================================*
 //  Target hardware information
-//    Device type: Intel->x86-64 (Windows64)
+//    Device type: ARM Compatible->ARM Cortex-M
 //    Number of bits:     char:   8    short:   16    int:  32
 //                        long:  32    long long:  64
-//                        native word size:  64
+//                        native word size:  32
 //    Byte ordering: LittleEndian
 //    Signed integer division rounds to: Zero
 //    Shift right on a signed integer as arithmetic shift: on

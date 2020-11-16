@@ -7,12 +7,12 @@
 //
 // Code generated for Simulink model 'minjerk'.
 //
-// Model version                  : 2.12
+// Model version                  : 2.13
 // Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
-// C/C++ source code generated on : Thu Nov 12 15:29:44 2020
+// C/C++ source code generated on : Mon Nov 16 12:11:17 2020
 //
 // Target selection: ert.tlc
-// Embedded hardware selection: Intel->x86-64 (Windows64)
+// Embedded hardware selection: ARM Compatible->ARM Cortex-M
 // Code generation objectives:
 //    1. Execution efficiency
 //    2. RAM efficiency
@@ -23,19 +23,10 @@
 #include <cmath>
 #include "rtwtypes.h"
 #include "zero_crossing_types.h"
-#include "rtw_continuous.h"
-#include "rtw_solver.h"
 
 // Model Code Variants
 
 // Macros for accessing real-time model data structure
-#ifndef rtmGetErrorStatus
-#define rtmGetErrorStatus(rtm)         ((rtm)->errorStatus)
-#endif
-
-#ifndef rtmSetErrorStatus
-#define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
-#endif
 
 // Class declaration for model minjerk
 class minjerkModelClass {
@@ -72,11 +63,6 @@ class minjerkModelClass {
     boolean_T EOT;                     // '<Root>/EOT'
   } ExtY;
 
-  // Real-time Model Data Structure
-  struct RT_MODEL {
-    const char_T * volatile errorStatus;
-  };
-
   // External inputs
   ExtU rtU;
 
@@ -95,17 +81,11 @@ class minjerkModelClass {
   // Destructor
   ~minjerkModelClass();
 
-  // Real-Time Model get method
-  minjerkModelClass::RT_MODEL * getRTM();
-
   // private data and function members
  private:
   // Block signals and states
   DW rtDW;
   PrevZCX rtPrevZCX;                   // Triggered events
-
-  // Real-Time Model
-  RT_MODEL rtM;
 };
 
 //-

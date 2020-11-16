@@ -7,12 +7,12 @@
 //
 // Code generated for Simulink model 'minjerk'.
 //
-// Model version                  : 2.12
+// Model version                  : 2.13
 // Simulink Coder version         : 9.4 (R2020b) 29-Jul-2020
-// C/C++ source code generated on : Thu Nov 12 15:29:44 2020
+// C/C++ source code generated on : Mon Nov 16 12:11:17 2020
 //
 // Target selection: ert.tlc
-// Embedded hardware selection: Intel->x86-64 (Windows64)
+// Embedded hardware selection: ARM Compatible->ARM Cortex-M
 // Code generation objectives:
 //    1. Execution efficiency
 //    2. RAM efficiency
@@ -186,8 +186,7 @@ minjerkModelClass::minjerkModelClass() :
   rtU(),
   rtY(),
   rtDW(),
-  rtPrevZCX(),
-  rtM()
+  rtPrevZCX()
 {
   // Currently there is no constructor body generated.
 }
@@ -196,12 +195,6 @@ minjerkModelClass::minjerkModelClass() :
 minjerkModelClass::~minjerkModelClass()
 {
   // Currently there is no destructor body generated.
-}
-
-// Real-Time Model get method
-minjerkModelClass::RT_MODEL * minjerkModelClass::getRTM()
-{
-  return (&rtM);
 }
 
 //
