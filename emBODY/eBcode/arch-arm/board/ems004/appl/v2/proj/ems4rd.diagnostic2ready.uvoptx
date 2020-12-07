@@ -2495,7 +2495,7 @@
     <File>
       <GroupNumber>11</GroupNumber>
       <FileNumber>71</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -2643,7 +2643,7 @@
     <File>
       <GroupNumber>13</GroupNumber>
       <FileNumber>82</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -2655,7 +2655,7 @@
     <File>
       <GroupNumber>13</GroupNumber>
       <FileNumber>83</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -2679,7 +2679,7 @@
     <File>
       <GroupNumber>13</GroupNumber>
       <FileNumber>85</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -2776,14 +2776,14 @@
 
   <Group>
     <GroupName>eo-motor-controller</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>93</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -2807,7 +2807,7 @@
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>95</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -2819,7 +2819,7 @@
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>96</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -2831,7 +2831,7 @@
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>97</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -2891,12 +2891,12 @@
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>102</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\..\..\embobj\plus\mc\minjerk\helpers\minjerk_ert_rtw\minjerk.c</PathWithFileName>
-      <FilenameWithoutPath>minjerk.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\..\..\..\embobj\plus\mc\minjerk\helpers\minjerk_ert_rtw\minjerk.cpp</PathWithFileName>
+      <FilenameWithoutPath>minjerk.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -3335,7 +3335,7 @@
     <File>
       <GroupNumber>17</GroupNumber>
       <FileNumber>137</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -3423,7 +3423,7 @@
     <File>
       <GroupNumber>19</GroupNumber>
       <FileNumber>143</FileNumber>
-      <FileType>1</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
@@ -3560,7 +3560,7 @@
 
   <Group>
     <GroupName>embot::prot::eth</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
