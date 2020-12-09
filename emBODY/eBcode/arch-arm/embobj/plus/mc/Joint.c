@@ -581,6 +581,9 @@ CTRL_UNITS Joint_do_pwm_or_current_control(Joint* o)
                 break;
             }
             o->minjerk.step();
+            char info[70];
+            snprintf(info, 70,"AAAAAA after step: pref %f, vref %f, aref %f",o->minjerk.rtY.pref, o->minjerk.rtY.vref, o->minjerk.rtY.aref);
+            Joint_send_debug_message(info, o->ID, 0, 0);
             o->pos_ref = o->minjerk.rtY.pref;
             o->vel_ref = o->minjerk.rtY.vref;
             o->acc_ref = o->minjerk.rtY.aref;
@@ -754,6 +757,9 @@ CTRL_UNITS Joint_do_vel_control(Joint* o)
         case eomc_controlmode_position:
         {
             o->minjerk.step();
+            char info[70];
+            snprintf(info, 70,"BBBBBB after step: pref %f, vref %f, aref %f",o->minjerk.rtY.pref, o->minjerk.rtY.vref, o->minjerk.rtY.aref);
+            Joint_send_debug_message(info, o->ID, 0, 0);
             o->pos_ref = o->minjerk.rtY.pref;
             o->vel_ref = o->minjerk.rtY.vref;
             o->acc_ref = o->minjerk.rtY.aref;
@@ -928,9 +934,13 @@ static BOOL Joint_set_pos_ref_core(Joint* o, CTRL_UNITS pos_ref, CTRL_UNITS vel_
     o->vel_ref = vel_ref;
 
     if (vel_ref == 0.0f) return TRUE;
-    
+	
     o->minjerk.rtU.pfin = pos_ref;
     o->minjerk.rtU.vavg = vel_ref;
+	
+    char info[70];
+    snprintf(info, 70,"CCCCC set position: pfin %f, vavg %f",o->minjerk.rtU.pfin, o->minjerk.rtU.vavg);
+    Joint_send_debug_message(info, o->ID, 0, 0);
     return TRUE;  
 }
 
@@ -960,7 +970,9 @@ BOOL Joint_set_pos_raw(Joint* o, CTRL_UNITS pos_ref)
     
     // Has sense? Raw should be diff? vavg has to be set to 0?
     o->minjerk.rtU.pfin = pos_ref;
-    
+    char info[70];
+    snprintf(info, 70,"DDDDDD set position: pfin %f, vavg %f",o->minjerk.rtU.pfin, o->minjerk.rtU.vavg);
+    Joint_send_debug_message(info, o->ID, 0, 0);
     return TRUE;  
 }
 
@@ -1074,6 +1086,9 @@ BOOL Joint_set_cur_ref(Joint* o, CTRL_UNITS cur_ref)
 void Joint_stop(Joint* o)
 {
     o->minjerk.rtU.pfin = o->pos_fbk;
+    char info[70];
+    snprintf(info, 70,"EEEEE Joint stop: pos_fbk %f, pfin %f, vavg %f",o->pos_fbk, o->minjerk.rtU.pfin, o->minjerk.rtU.vavg);
+    Joint_send_debug_message(info, o->ID, 0, 0);
 }
 
 static void Joint_set_inner_control_flags(Joint* o)
