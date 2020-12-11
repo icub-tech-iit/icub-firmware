@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE robot PUBLIC "-//YARP//DTD yarprobotinterface 3.0//EN" "http://www.yarp.it/DTD/yarprobotinterfaceV3.0.dtd">
+
+<robot name="finger" portprefix="icub" build="1" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <params>
+    <xi:include href="hardware/electronics/pc104.xml" />
+    </params>
+          
+    <devices>
+   
+    <!-- FINGER -->
+    <xi:include href="./hardware/motorControl/finger-eb21-j0-mc.xml" /> 
+    <xi:include href="./wrappers/motorControl/finger-mc_wrapper.xml" /> 
+ 
+  
+    <!--  CALIBRATORS -->
+    <xi:include href="calibrators/finger-calib.xml" /> 
+
+</devices>
+</robot> 
