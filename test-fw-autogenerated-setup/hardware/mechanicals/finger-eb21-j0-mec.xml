@@ -12,7 +12,7 @@
         <param name="AxisName">                 "finger"         </param>
         <param name="AxisType">                 "revolute"          </param>
         <param name="Encoder">                  182.044             </param>   
-        <param name="fullscalePWM">             3360                </param>
+        <param name="fullscalePWM">             32000                </param>
         <param name="ampsToSensor">             1000.0              </param>
         <param name="Gearbox_M2J">             -141                 </param>
         <param name="Gearbox_E2J">   	        1                   </param>
@@ -27,6 +27,16 @@
         <param name="hardwareJntPosMax">          +30               </param>
         <param name="rotorPosMin">                 0                </param> 
         <param name="rotorPosMax">                 0                </param>
+    </group>
+    
+    <group name="2FOC">
+        <param name="HasHallSensor">         1           </param>
+        <param name="HasTempSensor">         0           </param>
+        <param name="HasRotorEncoder">       1           </param>
+        <param name="HasRotorEncoderIndex">  0           </param>
+        <param name="HasSpeedEncoder">       0           </param>
+        <param name="RotorIndexOffset">      0           </param>
+        <param name="MotorPoles">            8           </param>
     </group>
 
     <group name="COUPLINGS"> 
