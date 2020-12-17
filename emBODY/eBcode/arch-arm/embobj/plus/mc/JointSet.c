@@ -249,6 +249,8 @@ void JointSet_do_odometry(JointSet* o) //
 
 BOOL JointSet_do_check_faults(JointSet* o)
 {
+	
+	  //eo_errman_Trace(eo_errman_GetHandle(),"A", "JointSet_do_check_faults");
     int N = *(o->pN);
     int E = *(o->pE);
     
@@ -259,17 +261,20 @@ BOOL JointSet_do_check_faults(JointSet* o)
     {
         if (Joint_check_faults(o->joint+o->joints_of_set[k]))
         {
+					  //eo_errman_Trace(eo_errman_GetHandle(),"B", "JointSet_do_check_faults");
             fault = TRUE;
         }
         
         if (Motor_check_faults(o->motor+o->motors_of_set[k]))
         {
+					  //eo_errman_Trace(eo_errman_GetHandle(),"C", "JointSet_do_check_faults");
             fault = TRUE;
             o->joint[o->joints_of_set[k]].control_mode = eomc_controlmode_hwFault;
         }
         
         if (Motor_is_external_fault(o->motor+o->motors_of_set[k]))
         {
+					  eo_errman_Trace(eo_errman_GetHandle(),"D", "JointSet_do_check_faults");
             o->external_fault = TRUE;
         }
     }
@@ -279,6 +284,7 @@ BOOL JointSet_do_check_faults(JointSet* o)
         AbsEncoder* enc = o->absEncoder+o->encoders_of_set[k];
         if (AbsEncoder_is_in_fault(enc))
         {
+					  eo_errman_Trace(eo_errman_GetHandle(),"E", "JointSet_do_check_faults");
             fault = TRUE;
             encoder_fault = TRUE;
         }

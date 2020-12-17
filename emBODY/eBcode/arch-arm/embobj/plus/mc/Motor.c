@@ -662,12 +662,14 @@ BOOL Motor_check_faults(Motor* o) //
         
         if (WatchDog_check_expired(&o->can_2FOC_alive_wdog))
         {
+					  //eo_errman_Trace(eo_errman_GetHandle(),"SONO SPIRATO", "Motor_checks_faluts");
             can_dead = TRUE;
             
             o->hardware_fault = TRUE;
         }
         else
         {
+					  //eo_errman_Trace(eo_errman_GetHandle(),"STO NABBOMBA", "Motor_checks_faluts");
             o->can_dead = FALSE;
         }
     }

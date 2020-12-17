@@ -145,6 +145,7 @@ void Joint_init(Joint* o)
 
 void Joint_reset_calibration_data(Joint* o)
 {
+	  Joint_send_debug_message("RESET CALIBRATION DATA", 0,0,0);
     memset(&o->running_calibration, 0, sizeof(jointCalibrationData));
     
     o->running_calibration.type = eomc_calibration_typeUndefined;
@@ -227,6 +228,7 @@ void Joint_motion_reset(Joint *o)
 }
 void Joint_update_status_reference(Joint* o)
 {    
+	Joint_send_debug_message("UPDATE STATUS REFERENCE", o->ID, 0,0);
     switch (o->control_mode)
     {
         case eomc_controlmode_idle:
@@ -272,6 +274,7 @@ void Joint_update_status_reference(Joint* o)
 
 BOOL Joint_set_control_mode(Joint* o, eOmc_controlmode_command_t control_mode)
 {
+	Joint_send_debug_message("SET CONTROLMODE1", o->ID, control_mode, o->control_mode);
     if (o->control_mode == ((eOmc_controlmode_t)control_mode)) return TRUE;
     
     if (o->control_mode == eomc_controlmode_notConfigured) return FALSE;
@@ -317,7 +320,7 @@ BOOL Joint_set_control_mode(Joint* o, eOmc_controlmode_command_t control_mode)
     
     o->control_mode = (eOmc_controlmode_t)control_mode;
     
-    Joint_send_debug_message("SET CONTROLMODE", o->ID, control_mode, o->control_mode);
+    Joint_send_debug_message("SET CONTROLMODE2", o->ID, control_mode, o->control_mode);
     
     Joint_set_inner_control_flags(o);
     
@@ -330,6 +333,7 @@ BOOL Joint_set_control_mode(Joint* o, eOmc_controlmode_command_t control_mode)
 
 BOOL Joint_set_interaction_mode(Joint* o, eOmc_interactionmode_t interaction_mode)
 {
+	  Joint_send_debug_message("SET INTERACTION MODE", 0, 0, 0);
     if (o->interaction_mode == interaction_mode) return TRUE;
     
     o->interaction_mode = interaction_mode;
@@ -359,14 +363,17 @@ void Joint_update_torque_fbk(Joint* o, CTRL_UNITS trq_fbk)
 
 BOOL Joint_check_faults(Joint* o)
 {
+	eo_errman_Trace(eo_errman_GetHandle(),"PIPPO1", "Joint_check_faults");
     if (WatchDog_check_expired(&o->trq_fbk_wdog))
     {
+			  //eo_errman_Trace(eo_errman_GetHandle(),"A", "Joint_check_faults");
         o->trq_fbk = ZERO;
         o->trq_ref = ZERO;
         o->trq_err = ZERO;
         
         if (o->trq_control_active)
         {
+					  eo_errman_Trace(eo_errman_GetHandle(),"PIPPO2", "Joint_check_faults");
             o->fault_state.bits.torque_sensor_timeout = TRUE;
             
             o->control_mode = eomc_controlmode_hwFault;
@@ -375,15 +382,19 @@ BOOL Joint_check_faults(Joint* o)
     
     if ((o->control_mode != eomc_controlmode_notConfigured) && (o->control_mode != eomc_controlmode_calib))
     {
+			  //eo_errman_Trace(eo_errman_GetHandle(),"B", "Joint_check_faults");
         if ((o->pos_min != o->pos_max) && ((o->pos_fbk < o->pos_min_hard - POS_LIMIT_MARGIN) || (o->pos_fbk > o->pos_max_hard + POS_LIMIT_MARGIN))) 
         {
+					  eo_errman_Trace(eo_errman_GetHandle(),"C", "Joint_check_faults");
             o->fault_state.bits.hard_limit_reached = TRUE;
             
             o->control_mode = eomc_controlmode_hwFault;
         }
     }
     
-    if (o->control_mode != eomc_controlmode_hwFault) return FALSE;
+    if (o->control_mode != eomc_controlmode_hwFault) { 
+		   eo_errman_Trace(eo_errman_GetHandle(),"D", "Joint_check_faults");
+		   return FALSE;}
 
     if (++o->diagnostics_refresh > 5*CTRL_LOOP_FREQUENCY_INT)
     {
@@ -392,9 +403,10 @@ BOOL Joint_check_faults(Joint* o)
     }
         
     if (o->fault_state.bitmask != o->fault_state_prec.bitmask)
-    {        
+    {        eo_errman_Trace(eo_errman_GetHandle(),"E", "Joint_check_faults");
         if (o->fault_state.bits.torque_sensor_timeout && !o->fault_state_prec.bits.torque_sensor_timeout)
         {   
+					eo_errman_Trace(eo_errman_GetHandle(),"F", "Joint_check_faults");
             static eOerrmanDescriptor_t descriptor = {0};
             descriptor.par16 = o->ID;
             descriptor.par64 = 0;
@@ -429,6 +441,7 @@ extern void Joint_clear_faults(Joint* o)
 
 int8_t Joint_check_limits(Joint* o)
 {
+	  eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_check_limits");
     if (o->pos_min != o->pos_max)
     {
         if (o->pos_fbk <= o->pos_min) return -1;
@@ -445,6 +458,7 @@ int8_t Joint_pushing_limit(Joint* o)
 
 void Joint_set_limits(Joint* o, CTRL_UNITS pos_min, CTRL_UNITS pos_max)
 {
+	  eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_set_limits");
     o->pos_min = pos_min;
     o->pos_max = pos_max;
     // missing pos_min !
@@ -893,9 +907,15 @@ void Joint_get_impedance(Joint* o, eOmc_impedance_t* impedance)
 
 void Joint_get_state(Joint* o, eOmc_joint_status_t* joint_state)
 {
+	volatile static int ciao = 0;
+	if(eomc_controlmode_hwFault == o->control_mode)
+	{
+		ciao++;
+	}
+	  eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_get_state");
     joint_state->core.modes.interactionmodestatus    = o->interaction_mode;
     joint_state->core.modes.controlmodestatus        = o->control_mode;
-    joint_state->core.modes.ismotiondone             = o->minjerk.rtY.EOT;
+	  joint_state->core.modes.ismotiondone             = (0 == o->minjerk.rtY.EOT) ? 0 : 1;
     joint_state->core.measures.meas_position         = o->pos_fbk;           
     joint_state->core.measures.meas_velocity         = o->vel_fbk;        
     joint_state->core.measures.meas_acceleration     = o->acc_fbk;      
@@ -967,6 +987,7 @@ BOOL Joint_set_pos_ref(Joint* o, CTRL_UNITS pos_ref, CTRL_UNITS vel_ref)
 
 BOOL Joint_set_pos_raw(Joint* o, CTRL_UNITS pos_ref)
 {    
+	  eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_set_pos_raw");
     if (o->control_mode != eomc_controlmode_direct)
     {
         return FALSE;
