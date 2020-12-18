@@ -71,7 +71,7 @@
 // - declaration of extern public interface
 // --------------------------------------------------------------------------------------------------------------------
 
-
+#include "EoProtocolMC.h"
 
 // --------------------------------------------------------------------------------------------------------------------
 // - declaration of extern hidden interface 
@@ -1304,7 +1304,7 @@ extern void eoprot_fun_UPDT_mc_motor_config(const EOnv* nv, const eOropdescripto
 {   
     eOmc_motor_config_t *mconfig = (eOmc_motor_config_t*)rd->data;
     eOprotIndex_t mxx = eoprot_ID2index(rd->id32);
-
+    eo_errman_Trace(eo_errman_GetHandle(),"Start mc motor_config", "EoProtocolMC_fun_ems");
     eOmotioncontroller_mode_t mcmode = s_motorcontrol_getmode();
     
     eOcanprot_command_t command = {0};
