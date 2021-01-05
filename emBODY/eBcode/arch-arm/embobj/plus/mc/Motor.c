@@ -192,6 +192,8 @@ static void Motor_config_2FOC(Motor* o, eOmc_motor_config_t* config)
     #define USE_INDEX      0x0008
     #define HAS_SPEED_QE   0x0010
     #define ENA_VERBOSE    0x0020
+	
+	  eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config_2FOC", "Motor");
     
     o->can_motor_config[0] = 0;
     
@@ -304,9 +306,10 @@ void Motor_config(Motor* o, uint8_t ID, eOmc_motor_config_t* config) //
     o->Iqq_ovl = config->currentLimits.overloadCurrent;
     
     config->pwmLimit = Motor_config_pwm_limit(o, config->pwmLimit);
- 
+    eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config prima", "Motor");
     if (o->HARDWARE_TYPE == HARDWARE_2FOC)
     {
+			  eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config e' 2foc", "Motor");
         Motor_config_2FOC(o, config);
         
         WatchDog_set_base_time_msec(&o->can_2FOC_alive_wdog, CAN_ALIVE_TIMEOUT);
@@ -318,6 +321,7 @@ void Motor_config(Motor* o, uint8_t ID, eOmc_motor_config_t* config) //
     }
     else if (o->HARDWARE_TYPE == HARDWARE_MC4p)
     {
+			  eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config e' mc4plus", "Motor");
         //Motor_config_MC4p(o->ID, config);
 
         o->control_mode = icubCanProto_controlmode_idle;
