@@ -109,7 +109,7 @@ static void Motor_config_current_PID_2FOC(Motor* o, eOmc_PID_t* pidcurrent)
     ((int16_t*)KpKiKdKs)[2] = Kd; //(unused in 2FOC)
                KpKiKdKs [6] = Ks; // shift
     
-    send_debug_message("CURRENT PID", o->ID, Ks, (((uint64_t)Kp)<<32) | Ki);
+    //send_debug_message("CURRENT PID", o->ID, Ks, (((uint64_t)Kp)<<32) | Ki);
     
     eOprotID32_t id32 = eoprot_ID_get(eoprot_endpoint_motioncontrol, eoprot_entity_mc_motor, o->ID, 0);
     
@@ -160,7 +160,7 @@ static void Motor_config_velocity_PID_2FOC(Motor* o, eOmc_PID_t* pidvelocity)
     ((int16_t*)KpKiKdKs)[2] = Kd; //(unused in 2FOC)
                KpKiKdKs [6] = Ks; // shift
         
-    send_debug_message("VELOCITY PID", o->ID, Ks, (((uint64_t)Kp)<<32) | Ki);
+    //send_debug_message("VELOCITY PID", o->ID, Ks, (((uint64_t)Kp)<<32) | Ki);
     
     eOprotID32_t id32 = eoprot_ID_get(eoprot_endpoint_motioncontrol, eoprot_entity_mc_motor, o->ID, 0);
     
@@ -193,7 +193,7 @@ static void Motor_config_2FOC(Motor* o, eOmc_motor_config_t* config)
     #define HAS_SPEED_QE   0x0010
     #define ENA_VERBOSE    0x0020
 	
-	  eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config_2FOC", "Motor");
+	  //eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config_2FOC", "Motor");
     
     o->can_motor_config[0] = 0;
     
@@ -306,10 +306,10 @@ void Motor_config(Motor* o, uint8_t ID, eOmc_motor_config_t* config) //
     o->Iqq_ovl = config->currentLimits.overloadCurrent;
     
     config->pwmLimit = Motor_config_pwm_limit(o, config->pwmLimit);
-    eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config prima", "Motor");
+    //eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config prima", "Motor");
     if (o->HARDWARE_TYPE == HARDWARE_2FOC)
     {
-			  eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config e' 2foc", "Motor");
+			  //eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config e' 2foc", "Motor");
         Motor_config_2FOC(o, config);
         
         WatchDog_set_base_time_msec(&o->can_2FOC_alive_wdog, CAN_ALIVE_TIMEOUT);
@@ -321,7 +321,7 @@ void Motor_config(Motor* o, uint8_t ID, eOmc_motor_config_t* config) //
     }
     else if (o->HARDWARE_TYPE == HARDWARE_MC4p)
     {
-			  eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config e' mc4plus", "Motor");
+			  //eo_errman_Trace(eo_errman_GetHandle(),"Enter motor_config e' mc4plus", "Motor");
         //Motor_config_MC4p(o->ID, config);
 
         o->control_mode = icubCanProto_controlmode_idle;

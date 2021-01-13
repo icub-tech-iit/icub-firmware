@@ -37,7 +37,7 @@ static void Joint_send_debug_message(char *message, uint8_t jid, uint16_t par16,
     //errdes.par64            = par64;
     //eo_errman_Error(eo_errman_GetHandle(), eo_errortype_debug, message, NULL, &errdes);
 	
-	eo_errman_Trace(eo_errman_GetHandle(),message, "JOINT");
+	//eo_errman_Trace(eo_errman_GetHandle(),message, "JOINT");
 
 }
 
@@ -45,7 +45,7 @@ static void Joint_set_inner_control_flags(Joint* o);
 
 Joint* Joint_new(uint8_t n)
 {
-	Joint_send_debug_message("NEWWWWW", 0, 0, 0);
+	//Joint_send_debug_message("NEWWWWW", 0, 0, 0);
     Joint* o = NEW(Joint, n);
 	
     
@@ -144,7 +144,7 @@ void Joint_init(Joint* o)
 
 void Joint_reset_calibration_data(Joint* o)
 {
-	  Joint_send_debug_message("RESET CALIBRATION DATA", 0,0,0);
+	  //Joint_send_debug_message("RESET CALIBRATION DATA", 0,0,0);
     memset(&o->running_calibration, 0, sizeof(jointCalibrationData));
     
     o->running_calibration.type = eomc_calibration_typeUndefined;
@@ -153,7 +153,7 @@ void Joint_reset_calibration_data(Joint* o)
 void Joint_config(Joint* o, uint8_t ID, eOmc_joint_config_t* config)
 {
     o->ID = ID;
-    Joint_send_debug_message("CONFIGGGG", o->ID, 0, 0);       
+    //Joint_send_debug_message("CONFIGGGG", o->ID, 0, 0);       
     o->pos_min_soft = config->userlimits.min;
     o->pos_max_soft = config->userlimits.max;    
     o->pos_min_hard = config->hardwarelimits.min;
@@ -197,13 +197,13 @@ void Joint_config(Joint* o, uint8_t ID, eOmc_joint_config_t* config)
 
 void Joint_destroy(Joint* o)
 {
-	  Joint_send_debug_message("DESTROYYYYYYY", o->ID, 0, 0);
+	  //Joint_send_debug_message("DESTROYYYYYYY", o->ID, 0, 0);
     DELETE(o);
 }
 
 void Joint_motion_reset(Joint *o)
 {
-	  Joint_send_debug_message("MOTION RESETTT", o->ID, 0, 0);
+	  //Joint_send_debug_message("MOTION RESETTT", o->ID, 0, 0);
     PID_reset(&o->minjerkPID);
     PID_reset(&o->directPID);
     
@@ -227,7 +227,7 @@ void Joint_motion_reset(Joint *o)
 }
 void Joint_update_status_reference(Joint* o)
 {    
-	Joint_send_debug_message("UPDATE STATUS REFERENCE", o->ID, 0,0);
+	//Joint_send_debug_message("UPDATE STATUS REFERENCE", o->ID, 0,0);
     switch (o->control_mode)
     {
         case eomc_controlmode_idle:
@@ -406,7 +406,7 @@ BOOL Joint_check_faults(Joint* o)
    			//eo_errman_Trace(eo_errman_GetHandle(),"E", "Joint_check_faults");
         if (o->fault_state.bits.torque_sensor_timeout && !o->fault_state_prec.bits.torque_sensor_timeout)
         {   
-					eo_errman_Trace(eo_errman_GetHandle(),"F", "Joint_check_faults");
+					//eo_errman_Trace(eo_errman_GetHandle(),"F", "Joint_check_faults");
             static eOerrmanDescriptor_t descriptor = {0};
             descriptor.par16 = o->ID;
             descriptor.par64 = 0;
@@ -441,7 +441,7 @@ extern void Joint_clear_faults(Joint* o)
 
 int8_t Joint_check_limits(Joint* o)
 {
-	  eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_check_limits");
+	  //eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_check_limits");
     if (o->pos_min != o->pos_max)
     {
         if (o->pos_fbk <= o->pos_min) return -1;
@@ -458,7 +458,7 @@ int8_t Joint_pushing_limit(Joint* o)
 
 void Joint_set_limits(Joint* o, CTRL_UNITS pos_min, CTRL_UNITS pos_max)
 {
-	  eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_set_limits");
+	  //eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_set_limits");
     o->pos_min = pos_min;
     o->pos_max = pos_max;
     // missing pos_min !
@@ -987,7 +987,7 @@ BOOL Joint_set_pos_ref(Joint* o, CTRL_UNITS pos_ref, CTRL_UNITS vel_ref)
 
 BOOL Joint_set_pos_raw(Joint* o, CTRL_UNITS pos_ref)
 {    
-	  eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_set_pos_raw");
+	  //eo_errman_Trace(eo_errman_GetHandle(),"ASD", "Joint_set_pos_raw");
     if (o->control_mode != eomc_controlmode_direct)
     {
         return FALSE;

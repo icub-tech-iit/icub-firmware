@@ -274,7 +274,7 @@ BOOL JointSet_do_check_faults(JointSet* o)
         
         if (Motor_is_external_fault(o->motor+o->motors_of_set[k]))
         {
-					  eo_errman_Trace(eo_errman_GetHandle(),"D", "JointSet_do_check_faults");
+					  //eo_errman_Trace(eo_errman_GetHandle(),"D", "JointSet_do_check_faults");
             o->external_fault = TRUE;
         }
     }
@@ -284,7 +284,7 @@ BOOL JointSet_do_check_faults(JointSet* o)
         AbsEncoder* enc = o->absEncoder+o->encoders_of_set[k];
         if (AbsEncoder_is_in_fault(enc))
         {
-					  eo_errman_Trace(eo_errman_GetHandle(),"E", "JointSet_do_check_faults");
+					  //eo_errman_Trace(eo_errman_GetHandle(),"E", "JointSet_do_check_faults");
             fault = TRUE;
             encoder_fault = TRUE;
         }
